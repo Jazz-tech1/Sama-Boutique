@@ -7,15 +7,15 @@ datasource db {
   provider = "postgresql"
 }
 
-model User {
-  id        String   @id @default(cuid())
+model Profile {
+  id        String   @id
   email     String   @unique
   name      String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  products  Product[]
-  orders    Order[]
+  products Product[]
+  orders   Order[]
 }
 
 model Product {
@@ -27,32 +27,32 @@ model Product {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  profileId String
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
-  orderItems  OrderItem[]
+  orderItems OrderItem[]
 }
 
 model Order {
-  id          String      @id @default(cuid())
-  status      OrderStatus @default(PENDING)
-  total       Float
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  id        String      @id @default(cuid())
+  status    OrderStatus @default(PENDING)
+  total     Float
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
 
-  userId      String
-  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  profileId String
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
-  items       OrderItem[]
+  items OrderItem[]
 }
 
 model OrderItem {
-  id        String  @id @default(cuid())
-  quantity  Int
-  price     Float
+  id       String @id @default(cuid())
+  quantity Int
+  price    Float
 
-  orderId   String
-  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId String
+  order   Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
 
   productId String
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)

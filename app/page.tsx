@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   ShoppingCart,
   Package,
@@ -30,7 +31,7 @@ export default function Home() {
       <header className="border-b border-[#556B2F]/10 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
           <div>
-            <p className="text-sm font-medium text-[#718C42]">Bienvenue 👋</p>
+            <p className="text-sm font-medium text-[#718C42]">Bienvenue</p>
             <h1 className="text-2xl font-bold text-[#556B2F]">
               Sama Boutique
             </h1>
@@ -51,7 +52,7 @@ export default function Home() {
               </p>
 
               <h2 className="text-2xl font-bold">
-                Votre boutique en un coup d'œil.
+                Votre boutique en un coup d'oeil.
               </h2>
 
               <p className="mt-2 max-w-xl text-sm leading-6 text-white/75">
@@ -59,7 +60,11 @@ export default function Home() {
               </p>
             </div>
 
-            <button className="flex w-fit items-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-semibold text-[#556B2F]">
+            <button
+              disabled
+              className="flex w-fit cursor-not-allowed items-center gap-2 rounded-xl bg-white/50 px-4 py-3 text-sm font-semibold text-[#556B2F]/50"
+              title="Bientôt disponible"
+            >
               <Plus size={18} />
               Nouvelle vente
             </button>
@@ -106,25 +111,39 @@ export default function Home() {
             </p>
 
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-              <button className="rounded-2xl border border-[#556B2F]/10 p-4 text-left">
+              <button
+                disabled
+                className="cursor-not-allowed rounded-2xl border border-[#556B2F]/10 p-4 text-left opacity-40"
+                title="Bientôt disponible"
+              >
                 <ShoppingCart size={22} className="mb-3 text-[#556B2F]" />
                 <p className="text-sm font-semibold">Nouvelle vente</p>
               </button>
 
-              <button className="rounded-2xl border border-[#556B2F]/10 p-4 text-left">
+              <Link
+                href="/produits/nouveau"
+                className="rounded-2xl border border-[#556B2F]/10 p-4 text-left transition hover:border-[#556B2F]/40 hover:bg-[#556B2F]/5"
+              >
                 <Package size={22} className="mb-3 text-[#556B2F]" />
                 <p className="text-sm font-semibold">Ajouter produit</p>
-              </button>
+              </Link>
 
-              <button className="rounded-2xl border border-[#556B2F]/10 p-4 text-left">
+              <button
+                disabled
+                className="cursor-not-allowed rounded-2xl border border-[#556B2F]/10 p-4 text-left opacity-40"
+                title="Bientôt disponible"
+              >
                 <HandCoins size={22} className="mb-3 text-[#556B2F]" />
                 <p className="text-sm font-semibold">Lebalma</p>
               </button>
 
-              <button className="rounded-2xl border border-[#556B2F]/10 p-4 text-left">
+              <Link
+                href="/produits"
+                className="rounded-2xl border border-[#556B2F]/10 p-4 text-left transition hover:border-[#556B2F]/40 hover:bg-[#556B2F]/5"
+              >
                 <BarChart3 size={22} className="mb-3 text-[#556B2F]" />
                 <p className="text-sm font-semibold">Inventaire</p>
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -197,27 +216,27 @@ export default function Home() {
 
       <nav className="sticky bottom-0 mt-8 border-t border-[#556B2F]/10 bg-white px-3 py-3 sm:hidden">
         <div className="grid grid-cols-5 gap-1 text-center">
-          <button className="text-[#556B2F]">
+          <Link href="/" className="text-[#556B2F]">
             <BarChart3 size={20} className="mx-auto" />
             <span className="text-[11px] font-semibold">Accueil</span>
-          </button>
+          </Link>
 
-          <button className="text-gray-400">
+          <Link href="/produits" className="text-gray-400">
             <Package size={20} className="mx-auto" />
             <span className="text-[11px]">Stock</span>
-          </button>
+          </Link>
 
-          <button className="text-gray-400">
+          <button disabled className="cursor-not-allowed text-gray-300">
             <ShoppingCart size={20} className="mx-auto" />
             <span className="text-[11px]">Ventes</span>
           </button>
 
-          <button className="text-gray-400">
+          <button disabled className="cursor-not-allowed text-gray-300">
             <HandCoins size={20} className="mx-auto" />
             <span className="text-[11px]">Lebalma</span>
           </button>
 
-          <button className="text-gray-400">
+          <button disabled className="cursor-not-allowed text-gray-300">
             <BarChart3 size={20} className="mx-auto" />
             <span className="text-[11px]">Rapports</span>
           </button>
